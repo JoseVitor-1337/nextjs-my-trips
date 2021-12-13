@@ -8,8 +8,18 @@
     "lint": "next lint",
     "test": "jest",
     "test:watch": "yarn test --watch",
-    "test:bail": "yarn test --findRelatedTests --watch",
     "prepare": "husky install"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+	"lint-staged": {
+    "src/**/*": [
+			"yarn lint",
+			"yarn test --findRelatedTests --bail"
+		]
   },
   "dependencies": {
     "@chakra-ui/react": "^1.7.3",
@@ -32,6 +42,7 @@
     "eslint-plugin-react-hooks": "^4.3.0",
     "husky": "^7.0.4",
     "jest": "^27.4.4",
+    "lint-staged": "^12.1.2",
     "prettier": "2.5.1"
   }
 }
