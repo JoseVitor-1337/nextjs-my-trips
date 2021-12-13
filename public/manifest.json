@@ -4,9 +4,9 @@
     "display": "browser",
     "scope": "/",
     "start_url": "/",
-    "name": "my trips",
-    "short_name": "trips",
-    "description": "aprendendo boas praticas no react",
+    "name": "My Trips",
+    "short_name": "MT",
+    "description": "Aprendendo boas praticas no react",
     "icons": [
         {
             "src": "/icon-192x192.png",
