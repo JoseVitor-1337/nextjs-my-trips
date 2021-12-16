@@ -1,18 +1,17 @@
 import Head from "next/head"
+import Image from "next/image"
+import { useRouter } from "next/router"
 import client from "graphql/client"
 import { GET_PLACES, GET_PLACE_BY_SLUG } from "graphql/queries"
 import { Center, VStack, Heading, Box } from "@chakra-ui/react"
 import { CloseIcon } from "@chakra-ui/icons"
 
 import LinkWrapper from "components/LinkWrapper"
-import { useRouter } from "next/router"
 
 export default function Place({ place }) {
 	const router = useRouter()
 
 	if (router.isFallback) return null
-
-	console.log(`place`, place)
 
 	return (
 		<Center maxW="100vw" minH="100vh" bg="blue.800">
@@ -38,12 +37,16 @@ export default function Place({ place }) {
 					dangerouslySetInnerHTML={{ __html: place.description.html }}
 				/>
 
-				{place.gallery.map((picture, index) => (
-					<img
-						key={`${picture.url} - ${index}`}
-						src={picture.url}
-						alt={place.name}
-					/>
+				{place.gallery.map(({ url, width, height }) => (
+					<Box key={url}>
+						<Image
+							quality={75}
+							src={url}
+							width={width}
+							height={height}
+							alt={place.name}
+						/>
+					</Box>
 				))}
 			</VStack>
 		</Center>
