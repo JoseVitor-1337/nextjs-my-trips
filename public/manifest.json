@@ -1,12 +1,12 @@
 {
-    "theme_color": "#3544f6",
-    "background_color": "#3544f6",
+    "theme_color": "#3565f6",
+    "background_color": "#3565f6",
     "display": "browser",
     "scope": "/",
     "start_url": "/",
     "name": "My Trips",
-    "short_name": "MT",
-    "description": "Aprendendo boas praticas no react",
+    "short_name": "Trips",
+    "description": "simple map to show places where i went to",
     "icons": [
         {
             "src": "/icon-192x192.png",

@@ -1,4 +1,4 @@
-import Head from "next/head"
+import { NextSeo } from "next-seo"
 import Image from "next/image"
 import { useRouter } from "next/router"
 import client from "graphql/client"
@@ -14,42 +14,59 @@ export default function Place({ place }) {
 	if (router.isFallback) return null
 
 	return (
-		<Center maxW="100vw" minH="100vh" bg="blue.800">
-			<Head>
-				<title>{place.name}</title>
-			</Head>
+		<>
+			<NextSeo
+				title={`${place.name} - My Trips`}
+				description={place.description.text}
+				canonical="https://mytrips.com"
+				openGraph={{
+					url: "https://my-trips.josevitor.com.br",
+					title: `${place.name} - My Trips`,
+					description: place.description.text,
+					images: [
+						{
+							url: place.gallery[0].url,
+							width: place.gallery[0].width,
+							height: place.gallery[0].height,
+							alt: place.name
+						}
+					]
+				}}
+			/>
 
-			<LinkWrapper href="/">
-				<CloseIcon aria-label="Close icon to link home page" boxSize={6} />
-			</LinkWrapper>
+			<Center maxW="100vw" minH="100vh" bg="blue.800">
+				<LinkWrapper href="/">
+					<CloseIcon aria-label="Close icon to link home page" boxSize={6} />
+				</LinkWrapper>
 
-			<VStack
-				p={{ base: "2", md: "0" }}
-				maxW={{ base: "100%", md: "600px" }}
-				spacing={4}
-			>
-				<Heading textAlign="center" color="white">
-					{place.name}
-				</Heading>
-				<Box
-					textAlign="center"
-					color="gray.200"
-					dangerouslySetInnerHTML={{ __html: place.description.html }}
-				/>
+				<VStack
+					p={{ base: "2", md: "0" }}
+					maxW={{ base: "100%", md: "600px" }}
+					spacing={4}
+				>
+					<Heading textAlign="center" color="white">
+						{place.name}
+					</Heading>
+					<Box
+						textAlign="center"
+						color="gray.200"
+						dangerouslySetInnerHTML={{ __html: place.description.html }}
+					/>
 
-				{place.gallery.map(({ url, width, height }) => (
-					<Box key={url}>
-						<Image
-							quality={75}
-							src={url}
-							width={width}
-							height={height}
-							alt={place.name}
-						/>
-					</Box>
-				))}
-			</VStack>
-		</Center>
+					{place.gallery.map(({ url, width, height }) => (
+						<Box key={url}>
+							<Image
+								quality={75}
+								src={url}
+								width={width}
+								height={height}
+								alt={place.name}
+							/>
+						</Box>
+					))}
+				</VStack>
+			</Center>
+		</>
 	)
 }
 
@@ -78,6 +95,7 @@ export const getStaticProps = async ({ params }) => {
 	return {
 		props: {
 			place
-		}
+		},
+		revalidate: 5
 	}
 }
