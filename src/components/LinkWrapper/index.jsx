@@ -3,7 +3,7 @@ import { Box } from "@chakra-ui/react"
 
 import Link from "next/link"
 
-const LinkWrapper = ({ href, children }) => {
+const LinkWrapperr = ({ href, children }) => {
 	return (
 		<Box
 			position="fixed"
@@ -22,4 +22,4 @@ const LinkWrapper = ({ href, children }) => {
 	)
 }
 
-export default memo(LinkWrapper)
+export default memo(LinkWrapperr)
