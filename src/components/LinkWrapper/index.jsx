@@ -16,7 +16,7 @@ const LinkWrapperr = ({ href, children }) => {
 			_hover={{ color: "blue.500" }}
 		>
 			<Link href={href} passHref>
-				{children}
+				{children} - Link
 			</Link>
 		</Box>
 	)
