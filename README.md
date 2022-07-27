@@ -13,8 +13,8 @@
 - React.js
 - Next.js
 - Typescript
-- CMS
-
+- GraphQL
+- 
 ## Installation
 
 > Need have **npm** or **yarn** installed [Install NPM](https://nodejs.org/en/) or [Install YARN](https://yarnpkg.com/)
